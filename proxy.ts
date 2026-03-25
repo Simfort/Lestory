@@ -5,20 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function proxy(req: NextRequest) {
   const session = await getServerSession();
   const pathname = req.nextUrl.pathname;
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
-  const cspHeader =
-    [
-      "default-src 'self'",
-      `script-src 'self' 'strict-dynamic'`,
-      `style-src 'self'`,
-      "img-src 'self' blob: data:",
-      "font-src 'self'",
-      "object-src 'none'",
-      "base-uri 'self'",
-      "form-action 'self'",
-      "frame-ancestors 'none'",
-      "upgrade-insecure-requests",
-    ].join("; ") + ";";
+
   const corsHeader = "http://localhost:3000";
   if (session?.user) {
     if (pathname === "/")
@@ -29,7 +16,6 @@ export async function proxy(req: NextRequest) {
   }
   return NextResponse.next({
     headers: {
-      "Content-Security-Policy": cspHeader,
       "Access-Control-Allow-Origin": corsHeader,
     },
   });

@@ -32,3 +32,56 @@ body {
 button {
   cursor: pointer;
 }
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+h2 {
+  font-size: 25px;
+  font-weight: bold;
+}
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+}
+h4 {
+  font-size: 15px;
+  font-weight: bold;
+}
+h5 {
+  font-size: 10px;
+  font-weight: bold;
+}
+blockquote {
+  display: flex;
+  &::before {
+    display: inline-block;
+    content: "-";
+    margin-right: 10px;
+  }
+}
+ol {
+  list-style: decimal;
+  margin-left: 15px;
+}
+ul {
+  list-style: disc;
+}
+a {
+  color: blue;
+}
+code {
+  font-family: monospace;
+}
+.language-bash {
+  color: green;
+}
+
+.markdown-preview {
+  all: unset; /* Сбрасываем все унаследованные стили */
+  font-family: inherit;
+}
+
+.markdown-preview * {
+  all: revert; /* Восстанавливаем базовые стили для вложенных элементов */
+}
