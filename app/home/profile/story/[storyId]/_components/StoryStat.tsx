@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function StoryStat({
   story,
 }: {
-  story: Story & { author: Omit<User, "username" | "image"> };
+  story: Story & { author: Exclude<User, "username" | "image"> };
 }) {
   const lang = useLang();
   const category =
