@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: import.meta.dirname,
   },
+
   images: {
     remotePatterns: [
       {
@@ -12,6 +13,8 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  allowedDevOrigins: ["http://localhost:3000", "https://github.com"],
+  reactStrictMode: false,
 };
 
 export default nextConfig;

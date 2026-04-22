@@ -385,7 +385,10 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Story: 'Story'
+  Story: 'Story',
+  Chapter: 'Chapter',
+  StoryView: 'StoryView',
+  StoryLike: 'StoryLike'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +404,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "story"
+    modelProps: "user" | "story" | "chapter" | "storyView" | "storyLike"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -553,6 +556,228 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Chapter: {
+      payload: Prisma.$ChapterPayload<ExtArgs>
+      fields: Prisma.ChapterFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChapterFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChapterFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        findFirst: {
+          args: Prisma.ChapterFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChapterFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        findMany: {
+          args: Prisma.ChapterFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>[]
+        }
+        create: {
+          args: Prisma.ChapterCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        createMany: {
+          args: Prisma.ChapterCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ChapterCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>[]
+        }
+        delete: {
+          args: Prisma.ChapterDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        update: {
+          args: Prisma.ChapterUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        deleteMany: {
+          args: Prisma.ChapterDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChapterUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ChapterUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>[]
+        }
+        upsert: {
+          args: Prisma.ChapterUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChapterPayload>
+        }
+        aggregate: {
+          args: Prisma.ChapterAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChapter>
+        }
+        groupBy: {
+          args: Prisma.ChapterGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChapterGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChapterCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChapterCountAggregateOutputType> | number
+        }
+      }
+    }
+    StoryView: {
+      payload: Prisma.$StoryViewPayload<ExtArgs>
+      fields: Prisma.StoryViewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StoryViewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StoryViewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        findFirst: {
+          args: Prisma.StoryViewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StoryViewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        findMany: {
+          args: Prisma.StoryViewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>[]
+        }
+        create: {
+          args: Prisma.StoryViewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        createMany: {
+          args: Prisma.StoryViewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StoryViewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>[]
+        }
+        delete: {
+          args: Prisma.StoryViewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        update: {
+          args: Prisma.StoryViewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        deleteMany: {
+          args: Prisma.StoryViewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StoryViewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StoryViewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>[]
+        }
+        upsert: {
+          args: Prisma.StoryViewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryViewPayload>
+        }
+        aggregate: {
+          args: Prisma.StoryViewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStoryView>
+        }
+        groupBy: {
+          args: Prisma.StoryViewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StoryViewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StoryViewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StoryViewCountAggregateOutputType> | number
+        }
+      }
+    }
+    StoryLike: {
+      payload: Prisma.$StoryLikePayload<ExtArgs>
+      fields: Prisma.StoryLikeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.StoryLikeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.StoryLikeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        findFirst: {
+          args: Prisma.StoryLikeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.StoryLikeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        findMany: {
+          args: Prisma.StoryLikeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>[]
+        }
+        create: {
+          args: Prisma.StoryLikeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        createMany: {
+          args: Prisma.StoryLikeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.StoryLikeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>[]
+        }
+        delete: {
+          args: Prisma.StoryLikeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        update: {
+          args: Prisma.StoryLikeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        deleteMany: {
+          args: Prisma.StoryLikeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.StoryLikeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.StoryLikeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>[]
+        }
+        upsert: {
+          args: Prisma.StoryLikeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$StoryLikePayload>
+        }
+        aggregate: {
+          args: Prisma.StoryLikeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateStoryLike>
+        }
+        groupBy: {
+          args: Prisma.StoryLikeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StoryLikeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.StoryLikeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.StoryLikeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -613,13 +838,46 @@ export const StoryScalarFieldEnum = {
   content: 'content',
   keywords: 'keywords',
   cover: 'cover',
-  likes: 'likes',
-  views: 'views',
-  author_email: 'author_email',
   createdAt: 'createdAt'
 } as const
 
 export type StoryScalarFieldEnum = (typeof StoryScalarFieldEnum)[keyof typeof StoryScalarFieldEnum]
+
+
+export const ChapterScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  images: 'images',
+  storyId: 'storyId',
+  createdAt: 'createdAt'
+} as const
+
+export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
+
+
+export const StoryViewScalarFieldEnum = {
+  id: 'id',
+  storyId: 'storyId',
+  userId: 'userId',
+  ip: 'ip',
+  viewedAt: 'viewedAt',
+  userAgent: 'userAgent'
+} as const
+
+export type StoryViewScalarFieldEnum = (typeof StoryViewScalarFieldEnum)[keyof typeof StoryViewScalarFieldEnum]
+
+
+export const StoryLikeScalarFieldEnum = {
+  id: 'id',
+  storyId: 'storyId',
+  userId: 'userId',
+  ip: 'ip',
+  viewedAt: 'viewedAt',
+  userAgent: 'userAgent'
+} as const
+
+export type StoryLikeScalarFieldEnum = (typeof StoryLikeScalarFieldEnum)[keyof typeof StoryLikeScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -811,6 +1069,9 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   story?: Prisma.StoryOmit
+  chapter?: Prisma.ChapterOmit
+  storyView?: Prisma.StoryViewOmit
+  storyLike?: Prisma.StoryLikeOmit
 }
 
 /* Types for Logging */

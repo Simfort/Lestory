@@ -4,6 +4,7 @@ import "./globals.css";
 import Provider from "./Provider";
 
 import ModalContainer from "@/components/ModalContainer";
+import UploadModalContainer from "@/components/UploadModalContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Provider> {children}</Provider>
         <ModalContainer />
+        <UploadModalContainer />
       </body>
     </html>
   );

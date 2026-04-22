@@ -70,83 +70,104 @@ export const LANGUAGE_TEXTS = {
         },
       },
     },
+    search: {
+      fastSearch: {
+        en: "Fast пearch",
+        ru: "Быстрый поиск",
+      },
+      search: {
+        en: "Search",
+        ru: "Поиск",
+      },
+      books: {
+        en: "Books",
+        ru: "Книги",
+      },
+      authors: {
+        en: "Authors",
+        ru: "Авторы",
+      },
+      startBooksSearch: {
+        en: "Start search and read books",
+        ru: "Начни искать и читать книги",
+      },
+      startAuthorsSearch: {
+        en: "Start search authors and reading their books",
+        ru: "Начни искать авторов и читать их книги",
+      },
+      notFound: {
+        en: "Not Found",
+        ru: "Не найдено",
+      },
+    },
+    lastBooks: {
+      en: "Last Book",
+      ru: "Последнее прочитанное",
+    },
+    nowReaded: {
+      title: { en: "Now reading", ru: "Сейчас читают" },
+      new: {
+        en: "New",
+        ru: "Новинки",
+      },
+      topViews: {
+        en: "Top views",
+        ru: "Топ просмотров",
+      },
+      topLikes: {
+        en: "Top likes",
+        ru: "Топ лайков",
+      },
+    },
+    new: {
+      en: "New",
+      ru: "Новинки",
+    },
   },
   createPage: {
-    storyCreator: {
+    method: {
       title: {
-        en: "Story Creator",
-        ru: "Создатель рассказов",
+        en: "Method publication",
+        ru: "Метод публикации",
       },
-      form: {
+      chapters: {
+        en: "By chapters",
+        ru: "По главам",
+      },
+      all: {
+        en: "All book",
+        ru: "Всю книгу",
+      },
+      chaptersText: {
+        en: "Divide the entire story into chapters and make them pay-per-view",
+        ru: "Разделять весь рассказ по главам и можно делать их платными",
+      },
+      allText: {
+        en: "You can send an entire book and make it paid",
+        ru: "Вы можете отправить целую книгу и оплатить ее",
+      },
+    },
+    chapters: {
+      stepbar: {
         title: {
           en: "Title",
           ru: "Название",
         },
-        description: {
-          en: "Description",
-          ru: "Описание",
-        },
-        categoriesAndKeywordsTitle: {
+        CaK: {
           en: "Category and Keywords",
-          ru: "Жанр и Ключевые слова",
+          ru: "Ключевые слова и Жанр",
         },
-        categories: {
-          adventure: { en: "Adventure", ru: "Приключение" },
-
-          horror: {
-            en: "Horror",
-            ru: "Хоррор",
-          },
-          fantasy: {
-            en: "Fantasy",
-            ru: "Фэнтези",
-          },
-          fanfic: {
-            en: "Fanfic",
-            ru: "Фанфик",
-          },
-        },
-        editorsTitle: {
-          en: "Editing methods:",
-          ru: "Способы редактирования:",
-        },
-        markdownEditor: {
-          h2Preview: {
-            en: "Preview",
-            ru: "Предпросмотор",
-          },
-          uploadMarkdownButton: {
-            en: "Upload Markdown file",
-            ru: "Загрузить Markdown файл",
-          },
-        },
-        keywords: {
-          right: {
-            en: "You have successfully created a keyword.  Use - # - to create it again",
-            ru: "Вы успешно создали ключевое слово.Для последующего создания используйте - #",
-          },
-          notRight: {
-            en: "The keyword has not been created. Use the keyword at the beginning of the word.",
-            ru: "Kлючевое слово не создано используйте в начале слова - #",
-          },
-          placeholder: {
-            en: "To create a keyword, use - #",
-            ru: "Чтобы создать ключевое слово испльзуйте - #",
-          },
-        },
-        pdf: {
-          en: "Upload PDF",
-          ru: "Загрузить PDF",
+        content: {
+          en: "Content",
+          ru: "Контент",
         },
         cover: {
-          title: {
-            en: "Cover",
-            ru: "Обложка",
-          },
-          coverDrag: {
-            en: "Drag and drop the image file here",
-            ru: "Перетащите сюда файл",
-          },
+          en: "Cover",
+          ru: "Обложка",
+        },
+        private: {
+          en: "Private and Contributors",
+          ru: "Платное и Авторы",
         },
       },
     },

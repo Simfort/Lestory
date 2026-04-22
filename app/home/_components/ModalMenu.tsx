@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   Book,
   EyeClosed,
+  Home,
   LoaderPinwheel,
   Plus,
   Settings,
@@ -39,7 +40,9 @@ export default function ModalMenu({
       {" "}
       {/* User Button Icon */}
       <div className="flex justify-end">
-        <button
+        <Link
+          onClick={() => setOpenMenu(false)}
+          href={"/home/profile?id=" + (session?.user as { id: string }).id}
           className="active:opacity-40 transition-opacity hover:opacity-50"
           aria-label="Открыть данные об аккаунте
         ">
@@ -55,10 +58,17 @@ export default function ModalMenu({
           ) : (
             <User2 size={50} />
           )}
-        </button>
+        </Link>
       </div>
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col gap-2 items-center">
         {/* Creating Stories */}
+        <Link
+          onClick={() => setOpenMenu(false)}
+          href={"/home"}
+          aria-label="Link to home"
+          className="bg-blue-500  rounded-full p-2 active:opacity-40 transition-opacity hover:opacity-50">
+          <Home className="text-background" />
+        </Link>
         <Link
           onClick={() => setOpenMenu(false)}
           href={"/home/create"}

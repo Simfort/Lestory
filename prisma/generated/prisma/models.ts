@@ -10,4 +10,7 @@
  */
 export type * from './models/User'
 export type * from './models/Story'
+export type * from './models/Chapter'
+export type * from './models/StoryView'
+export type * from './models/StoryLike'
 export type * from './commonInputTypes'

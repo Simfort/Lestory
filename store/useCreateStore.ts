@@ -1,18 +1,24 @@
 import { UseCreateStore } from "@/lib/types";
+
 import { create } from "zustand";
 
 const useCreateStore = create<UseCreateStore>((set) => ({
   errors: {},
-  setError(arg) {
+  data: {
+    title: "",
+    description: "",
+    cover: "",
+    category: "",
+    keywords: "",
+    chapters: [],
+    price: "",
+    authors: "",
+  },
+  setError: (arg) => {
     set({ errors: arg });
   },
-  keywords: "",
-  category: "",
-  setCategory(arg) {
-    set({ category: arg });
-  },
-  setKeywords(arg) {
-    set({ keywords: arg });
+  setData: (arg) => {
+    set({ data: { ...arg } });
   },
 }));
 export default useCreateStore;

@@ -27,3 +27,18 @@ export type User = Prisma.UserModel
  * 
  */
 export type Story = Prisma.StoryModel
+/**
+ * Model Chapter
+ * 
+ */
+export type Chapter = Prisma.ChapterModel
+/**
+ * Model StoryView
+ * 
+ */
+export type StoryView = Prisma.StoryViewModel
+/**
+ * Model StoryLike
+ * 
+ */
+export type StoryLike = Prisma.StoryLikeModel

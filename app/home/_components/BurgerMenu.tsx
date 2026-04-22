@@ -15,11 +15,11 @@ export default function BurgerMenu({
         setOpenMenu(!openMenu);
       }}
       aria-label="Open Modal Window"
-      className="inline-flex relative flex-col z-1000">
+      className="inline-flex relative select-none   flex-col z-1000">
       {" "}
       <motion.div
         layout
-        className="inline-block  absolute top-5 left-0 size-10"
+        className="inline-block  absolute top-0 left-0 size-10"
         initial={openMenu ? { rotateZ: 45 } : { rotateZ: 0 }}
         animate={openMenu ? { rotateZ: 0, top: 0 } : { rotateZ: 45 }}>
         <Image
@@ -34,7 +34,7 @@ export default function BurgerMenu({
         layout
         initial={openMenu ? { rotateZ: -45 } : { rotateZ: 0 }}
         animate={openMenu ? { rotateZ: 0 } : { rotateZ: -45 }}
-        className="inline-block absolute top-0 left-0 size-10">
+        className="inline-block absolute -top-4 left-0 size-10">
         <Image
           src={"/mitarashi.svg"}
           alt="mitarashi"

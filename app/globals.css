@@ -26,11 +26,15 @@ body {
   color: var(--foreground);
   min-height: 100vh;
   max-width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   font-family: Arial, Helvetica, sans-serif;
 }
 button {
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 h1 {
   font-size: 30px;
@@ -84,4 +88,31 @@ code {
 
 .markdown-preview * {
   all: revert; /* Восстанавливаем базовые стили для вложенных элементов */
+}
+.pdf-viewer {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.pages-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.page-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.page-item img {
+  max-width: 300px; /* Ограничение ширины для компактного отображения */
+  height: auto;
+  display: block;
+}
+[data-scroll] {
+  scrollbar-width: none;
 }

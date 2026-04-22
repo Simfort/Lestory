@@ -1,0 +1,71 @@
+"use client";
+import useLang from "@/lib/hooks/useLang";
+import { LANGUAGE_TEXTS } from "@/lib/language";
+import { TStory } from "@/lib/types";
+
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+export default function NewsStories() {
+  const [books, setBooks] = useState<{ story: TStory }[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const lang = useLang();
+  const router = useRouter();
+  const getBooks = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/story/now/new");
+      const data = await res.json();
+      setBooks(data);
+      console.log(data);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error.message);
+      }
+      setBooks(null);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    getBooks();
+  }, []);
+  if (!books) return <div>sada</div>;
+  return (
+    <section className="mt-2 w-full">
+      <h4 className="text-foreground/50 pl-2 pb-2">
+        {LANGUAGE_TEXTS.homePage.nowReaded.new[lang]}
+      </h4>
+      <div className=" rounded-lg flex w-full flex-col  gap-5  shadow">
+        {books.map((story) => (
+          <button
+            onClick={() => router.push("/home/story/" + story.story.id)}
+            className="text-start flex items-center pl-2  gap-5  max-sm:w-screen active:opactity-50 transition-opacity  "
+            key={story.story.id}>
+            <Image
+              src={story.story.cover}
+              alt={`${story.story.title} cover`}
+              width={100}
+              className="w-18.75 rounded-sm h-30.25"
+              height={200}
+            />
+            <div>
+              <h4 className="font-bold mt-2 hover:text-amber-600 transition-colors">
+                {story.story.title}
+              </h4>
+              <div className="flex justify-between">
+                <div className="text-foreground/50 capitalize">
+                  {story.story.category}
+                </div>
+                <div className="bg-gray-200/50 inline-block px-2 text-foreground/50 rounded-xl">
+                  {story.story.type}
+                </div>
+              </div>
+            </div>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+}

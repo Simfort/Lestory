@@ -18,25 +18,29 @@ export const nextAuthConfig: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, token }) {
-      if (token) {
-        session.user = session.user || {};
-        session.user.email = token.email || session.user.email;
-        session.user.image = token.picture || session.user.image;
-        session.user.name = token.name || session.user.name;
+      session.user = session.user || {};
+      session.user.email = token.email || session.user.email;
+      session.user.image = token.picture || session.user.image;
+      session.user.name = token.name || session.user.name;
+
+      if (token.id) {
+        session.user.id = token.id;
+      } else {
+        console.warn("Token ID is missing");
       }
+
       return session;
     },
     async jwt({ token, account, profile }) {
       if (account && profile) {
-        console.log(profile);
         try {
-          const user = await prisma.user.findUnique({
+          let user = await prisma.user.findUnique({
             where: {
               email: profile.email,
             },
           });
           if (!user) {
-            await prisma.user.create({
+            user = await prisma.user.create({
               data: {
                 email: profile.email!,
                 username: profile.name!,
@@ -46,6 +50,8 @@ export const nextAuthConfig: NextAuthOptions = {
               },
             });
           }
+
+          token.id = user.id;
         } catch (error) {
           if (error instanceof Error) throw new Error(error.message);
         }

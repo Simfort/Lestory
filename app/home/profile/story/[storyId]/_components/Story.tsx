@@ -5,38 +5,37 @@ import type {
   Story as StoryI,
   User,
 } from "@/prisma/generated/prisma/client";
-import { useStory } from "@/store/useStory";
-import { useEffect } from "react";
+
 import StoryStat from "./StoryStat";
 import StoryContent from "./StoryContent";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { TStory } from "@/lib/types";
 
-export default function Story({
-  story,
-}: {
-  story: StoryI & { author: Omit<User, "username" | "image"> };
-}) {
-  const { setStory } = useStory();
-  useEffect(() => {
-    console.log(story);
-    if (story !== null) {
-      setStory(story);
-    }
-  }, [story]);
+export default function Story({ story }: { story: TStory }) {
+  const { data: session } = useSession();
+
+  if (!session || !story) {
+    return <p>Loading...</p>;
+  }
   return (
-    <div className="mt-20 relative w-full ">
+    <div className=" relative w-full pb-10 ">
       {" "}
-      <div className="bg-background shadow relative z-2 rounded-xl mt-20">
-        <StoryStat
-          story={
-            story as Story & { author: Exclude<User, "username" | "image"> }
-          }
-        />
-        <hr className="w-full mt-2 mb-2 text-blue-300" />
-        <StoryContent
-          story={
-            story as Story & { author: Exclude<User, "username" | "image"> }
-          }
-        />
+      <div className="flex items-center mt-20 justify-center gap-5 mb-5">
+        <Link
+          className="border-blue-300 hover:opacity-60 active:opacity-40 transition-opacity rounded-xl border p-2"
+          href={`/home/profile?id=${(session.user as { id: string }).id}`}>
+          <ArrowLeft size={20} />
+        </Link>
+        <h2 className="text-center ">Твое произведение</h2>
+      </div>
+      <div
+        className="bg-background shadow flex flex-wrap
+      justify-center items-center relative pb-5 z-2 gap-2 rounded-xl ">
+        <StoryStat story={story} />
+
+        <StoryContent story={story} />
       </div>
     </div>
   );

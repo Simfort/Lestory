@@ -52,7 +52,10 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Story: 'Story'
+  Story: 'Story',
+  Chapter: 'Chapter',
+  StoryView: 'StoryView',
+  StoryLike: 'StoryLike'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -92,13 +95,46 @@ export const StoryScalarFieldEnum = {
   content: 'content',
   keywords: 'keywords',
   cover: 'cover',
-  likes: 'likes',
-  views: 'views',
-  author_email: 'author_email',
   createdAt: 'createdAt'
 } as const
 
 export type StoryScalarFieldEnum = (typeof StoryScalarFieldEnum)[keyof typeof StoryScalarFieldEnum]
+
+
+export const ChapterScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  images: 'images',
+  storyId: 'storyId',
+  createdAt: 'createdAt'
+} as const
+
+export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
+
+
+export const StoryViewScalarFieldEnum = {
+  id: 'id',
+  storyId: 'storyId',
+  userId: 'userId',
+  ip: 'ip',
+  viewedAt: 'viewedAt',
+  userAgent: 'userAgent'
+} as const
+
+export type StoryViewScalarFieldEnum = (typeof StoryViewScalarFieldEnum)[keyof typeof StoryViewScalarFieldEnum]
+
+
+export const StoryLikeScalarFieldEnum = {
+  id: 'id',
+  storyId: 'storyId',
+  userId: 'userId',
+  ip: 'ip',
+  viewedAt: 'viewedAt',
+  userAgent: 'userAgent'
+} as const
+
+export type StoryLikeScalarFieldEnum = (typeof StoryLikeScalarFieldEnum)[keyof typeof StoryLikeScalarFieldEnum]
 
 
 export const SortOrder = {

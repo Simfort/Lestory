@@ -17,7 +17,7 @@ model User{
   username String
   password String?
   image String? 
-  stories Story[] @relation(name: "StoryToUser")
+  stories Story[] @relation(name: "ManyStoryToManyUser")
   @@map("users")
 }
 model Story{
@@ -27,13 +27,47 @@ model Story{
   private Boolean
   category String
   type String
-  content String
+  content String?
+  chapters Chapter[] @relation(name: "ChapterToStory")
   keywords String
   cover String @default("")
-  likes Int @default(0)
-  views Int @default(0)
-  author User @relation(name: "StoryToUser",fields: [author_email],references: [email])
-  author_email String
+  likes StoryLike[] @relation(name: "LikeToStory")
+  views StoryView[] @relation(name: "ViewToStory")
+  author User[] @relation(name: "ManyStoryToManyUser")
   createdAt DateTime @default(now())
   @@map("stories")
+}
+
+model Chapter{
+  id Int @id @default(autoincrement())
+  title String
+  description String?
+  story Story @relation(name: "ChapterToStory",fields: [storyId],references: [id])
+  images String[]
+  storyId Int
+  createdAt DateTime @default(now())
+  @@map("chapters")
+}
+
+model StoryView {
+  id        Int      @id @default(autoincrement())
+  storyId   Int
+  userId    String?  // если есть авторизация
+  ip        String   // для анонимных пользователей
+  viewedAt  DateTime @default(now())
+  userAgent String?
+  story Story @relation(name: "ViewToStory",fields: [storyId], references: [id])
+
+  @@unique([storyId,ip])
+}
+model StoryLike{
+  id        Int      @id @default(autoincrement())
+  storyId Int
+  userId String?
+  ip String 
+  viewedAt DateTime @default(now())
+  userAgent String? 
+  story Story @relation(name: "LikeToStory",fields: [storyId], references: [id])
+
+  @@unique([storyId,ip])
 }
