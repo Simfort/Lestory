@@ -13,7 +13,7 @@ export default async function createBook(
     formData.append("cover", data.cover);
     formData.append("category", data.category);
     formData.append("keywords", data.keywords);
-    formData.append("authors", data.authors);
+
     formData.append("price", data.price);
     formData.append("chaptersLength", data.chapters.length.toString());
     // Обрабатываем главы и их изображения

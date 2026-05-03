@@ -31,6 +31,7 @@ export type CreateData = {
   description: string;
   cover: string;
   chapters: Chapter[];
+
   category: string;
   keywords: string;
 
