@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 export default function NewsStories() {
   const [books, setBooks] = useState<{ story: TStory }[] | null>(null);
   const [loading, setLoading] = useState(false);
-  const lang = useLang();
+  const [lang] = useLang();
   const router = useRouter();
   const getBooks = async () => {
     setLoading(true);
@@ -37,18 +37,18 @@ export default function NewsStories() {
       <h4 className="text-foreground/50 pl-2 pb-2">
         {LANGUAGE_TEXTS.homePage.nowReaded.new[lang]}
       </h4>
-      <div className=" rounded-lg flex w-full flex-col  gap-5  shadow">
+      <div className=" flex w-full flex-col  gap-5 ">
         {books.map((story) => (
           <button
             onClick={() => router.push("/home/story/" + story.story.id)}
-            className="text-start flex items-center pl-2  gap-5  max-sm:w-screen active:opactity-50 transition-opacity  "
+            className="text-start flex pl-2  gap-5  max-sm:w-screen active:opactity-50 transition-opacity  "
             key={story.story.id}>
             <Image
               src={story.story.cover}
               alt={`${story.story.title} cover`}
-              width={100}
-              className="w-18.75 rounded-sm h-30.25"
-              height={200}
+              width={114}
+              height={151}
+              className="w-28.5 h-37.75"
             />
             <div>
               <h4 className="font-bold mt-2 hover:text-amber-600 transition-colors">

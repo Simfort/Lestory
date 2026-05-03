@@ -8,9 +8,11 @@ export async function PATCH(req: NextRequest) {
     const id = searchParams.get("id");
     const user = searchParams.get("user");
     const ip = req.headers.get("x-forwarded-for") as string;
+
     if (!id || !user) {
       return NextResponse.json("Id is not defined", { status: 500 });
     }
+
     let story = null;
     const isViewed = await prisma.storyView.findFirst({
       where: { storyId: Number(id), OR: [{ ip }, { userId: user }] },
@@ -20,10 +22,12 @@ export async function PATCH(req: NextRequest) {
             author: true,
             views: true,
             likes: true,
+            chapters: true,
           },
         },
       },
     });
+
     if (isViewed) {
       story = isViewed.story;
     } else {
@@ -39,6 +43,7 @@ export async function PATCH(req: NextRequest) {
               author: true,
               views: true,
               likes: true,
+              chapters: true,
             },
           },
         },

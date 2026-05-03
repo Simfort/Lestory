@@ -1,5 +1,6 @@
 import { prisma } from "@/config/prisma";
 import { uploadFile } from "@/lib/uploadFile";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
 const YANDEX_TOKEN = process.env.YANDEX_TOKEN;
@@ -11,13 +12,10 @@ if (!YANDEX_TOKEN) {
 export async function POST(req: NextRequest) {
   try {
     const data: FormData = await req.formData();
-    const authorsString = (data.get("authors") as string).split(" ");
-
-    const author = await prisma.user.findMany({
-      where: {
-        email: { in: authorsString },
-      },
-    });
+    const session = await getServerSession();
+    console.log(session);
+    if (!session?.user?.email)
+      return NextResponse.json("Not auth", { status: 401 });
 
     const story = {
       title: data.get("title") as string,
@@ -27,17 +25,12 @@ export async function POST(req: NextRequest) {
       private: false,
       description: data.get("description") as string,
       type: "chapters",
-      author,
+      author_email: session.user.email,
     };
 
     const storyCreated = await prisma.story.create({
       data: {
         ...story,
-        author: {
-          connect: author.map((author) => ({
-            id: author.id,
-          })),
-        },
       },
     });
 

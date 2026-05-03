@@ -1,11 +1,11 @@
-import FooterPhoneHome from "./_components/FooterPhoneHome";
+import Footer from "./_components/Footer";
+import NavigationContainer from "./_components/NavigationContainer";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div>
-      {children}
-
-      <FooterPhoneHome />
+      {" "}
+      <NavigationContainer>{children}</NavigationContainer>
     </div>
   );
 }

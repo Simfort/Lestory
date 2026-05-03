@@ -66,3 +66,13 @@ export type StoryView = Prisma.StoryViewModel
  * 
  */
 export type StoryLike = Prisma.StoryLikeModel
+/**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel
+/**
+ * Model CommentLike
+ * 
+ */
+export type CommentLike = Prisma.CommentLikeModel

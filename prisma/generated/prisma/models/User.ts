@@ -182,6 +182,9 @@ export type UserWhereInput = {
   username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringNullableFilter<"User"> | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  views?: Prisma.StoryViewListRelationFilter
+  likes?: Prisma.StoryLikeListRelationFilter
+  comment?: Prisma.CommentListRelationFilter
   stories?: Prisma.StoryListRelationFilter
 }
 
@@ -191,6 +194,9 @@ export type UserOrderByWithRelationInput = {
   username?: Prisma.SortOrder
   password?: Prisma.SortOrderInput | Prisma.SortOrder
   image?: Prisma.SortOrderInput | Prisma.SortOrder
+  views?: Prisma.StoryViewOrderByRelationAggregateInput
+  likes?: Prisma.StoryLikeOrderByRelationAggregateInput
+  comment?: Prisma.CommentOrderByRelationAggregateInput
   stories?: Prisma.StoryOrderByRelationAggregateInput
 }
 
@@ -203,6 +209,9 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   username?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringNullableFilter<"User"> | string | null
   image?: Prisma.StringNullableFilter<"User"> | string | null
+  views?: Prisma.StoryViewListRelationFilter
+  likes?: Prisma.StoryLikeListRelationFilter
+  comment?: Prisma.CommentListRelationFilter
   stories?: Prisma.StoryListRelationFilter
 }, "id" | "email">
 
@@ -234,6 +243,9 @@ export type UserCreateInput = {
   username: string
   password?: string | null
   image?: string | null
+  views?: Prisma.StoryViewCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   stories?: Prisma.StoryCreateNestedManyWithoutAuthorInput
 }
 
@@ -243,6 +255,9 @@ export type UserUncheckedCreateInput = {
   username: string
   password?: string | null
   image?: string | null
+  views?: Prisma.StoryViewUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeUncheckedCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   stories?: Prisma.StoryUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -252,6 +267,9 @@ export type UserUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   stories?: Prisma.StoryUpdateManyWithoutAuthorNestedInput
 }
 
@@ -261,6 +279,9 @@ export type UserUncheckedUpdateInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUncheckedUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   stories?: Prisma.StoryUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -312,14 +333,14 @@ export type UserMinOrderByAggregateInput = {
   image?: Prisma.SortOrder
 }
 
-export type UserListRelationFilter = {
-  every?: Prisma.UserWhereInput
-  some?: Prisma.UserWhereInput
-  none?: Prisma.UserWhereInput
+export type UserScalarRelationFilter = {
+  is?: Prisma.UserWhereInput
+  isNot?: Prisma.UserWhereInput
 }
 
-export type UserOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
+export type UserNullableScalarRelationFilter = {
+  is?: Prisma.UserWhereInput | null
+  isNot?: Prisma.UserWhereInput | null
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -330,42 +351,64 @@ export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
 
-export type UserCreateNestedManyWithoutStoriesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput> | Prisma.UserCreateWithoutStoriesInput[] | Prisma.UserUncheckedCreateWithoutStoriesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput | Prisma.UserCreateOrConnectWithoutStoriesInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+export type UserCreateNestedOneWithoutStoriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedCreateNestedManyWithoutStoriesInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput> | Prisma.UserCreateWithoutStoriesInput[] | Prisma.UserUncheckedCreateWithoutStoriesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput | Prisma.UserCreateOrConnectWithoutStoriesInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
+export type UserUpdateOneRequiredWithoutStoriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput
+  upsert?: Prisma.UserUpsertWithoutStoriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutStoriesInput, Prisma.UserUpdateWithoutStoriesInput>, Prisma.UserUncheckedUpdateWithoutStoriesInput>
 }
 
-export type UserUpdateManyWithoutStoriesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput> | Prisma.UserCreateWithoutStoriesInput[] | Prisma.UserUncheckedCreateWithoutStoriesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput | Prisma.UserCreateOrConnectWithoutStoriesInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStoriesInput | Prisma.UserUpsertWithWhereUniqueWithoutStoriesInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutStoriesInput | Prisma.UserUpdateWithWhereUniqueWithoutStoriesInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStoriesInput | Prisma.UserUpdateManyWithWhereWithoutStoriesInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+export type UserCreateNestedOneWithoutViewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutViewsInput, Prisma.UserUncheckedCreateWithoutViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutViewsInput
+  connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUncheckedUpdateManyWithoutStoriesNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput> | Prisma.UserCreateWithoutStoriesInput[] | Prisma.UserUncheckedCreateWithoutStoriesInput[]
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutStoriesInput | Prisma.UserCreateOrConnectWithoutStoriesInput[]
-  upsert?: Prisma.UserUpsertWithWhereUniqueWithoutStoriesInput | Prisma.UserUpsertWithWhereUniqueWithoutStoriesInput[]
-  set?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  disconnect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  delete?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  connect?: Prisma.UserWhereUniqueInput | Prisma.UserWhereUniqueInput[]
-  update?: Prisma.UserUpdateWithWhereUniqueWithoutStoriesInput | Prisma.UserUpdateWithWhereUniqueWithoutStoriesInput[]
-  updateMany?: Prisma.UserUpdateManyWithWhereWithoutStoriesInput | Prisma.UserUpdateManyWithWhereWithoutStoriesInput[]
-  deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
+export type UserUpdateOneWithoutViewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutViewsInput, Prisma.UserUncheckedCreateWithoutViewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutViewsInput
+  upsert?: Prisma.UserUpsertWithoutViewsInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutViewsInput, Prisma.UserUpdateWithoutViewsInput>, Prisma.UserUncheckedUpdateWithoutViewsInput>
+}
+
+export type UserCreateNestedOneWithoutLikesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneWithoutLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLikesInput
+  upsert?: Prisma.UserUpsertWithoutLikesInput
+  disconnect?: Prisma.UserWhereInput | boolean
+  delete?: Prisma.UserWhereInput | boolean
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLikesInput, Prisma.UserUpdateWithoutLikesInput>, Prisma.UserUncheckedUpdateWithoutLikesInput>
+}
+
+export type UserCreateNestedOneWithoutCommentInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentInput, Prisma.UserUncheckedCreateWithoutCommentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutCommentNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutCommentInput, Prisma.UserUncheckedCreateWithoutCommentInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCommentInput
+  upsert?: Prisma.UserUpsertWithoutCommentInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentInput, Prisma.UserUpdateWithoutCommentInput>, Prisma.UserUncheckedUpdateWithoutCommentInput>
 }
 
 export type UserCreateWithoutStoriesInput = {
@@ -374,6 +417,9 @@ export type UserCreateWithoutStoriesInput = {
   username: string
   password?: string | null
   image?: string | null
+  views?: Prisma.StoryViewCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutStoriesInput = {
@@ -382,6 +428,9 @@ export type UserUncheckedCreateWithoutStoriesInput = {
   username: string
   password?: string | null
   image?: string | null
+  views?: Prisma.StoryViewUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeUncheckedCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutStoriesInput = {
@@ -389,31 +438,15 @@ export type UserCreateOrConnectWithoutStoriesInput = {
   create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
 }
 
-export type UserUpsertWithWhereUniqueWithoutStoriesInput = {
-  where: Prisma.UserWhereUniqueInput
+export type UserUpsertWithoutStoriesInput = {
   update: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
   create: Prisma.XOR<Prisma.UserCreateWithoutStoriesInput, Prisma.UserUncheckedCreateWithoutStoriesInput>
+  where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateWithWhereUniqueWithoutStoriesInput = {
-  where: Prisma.UserWhereUniqueInput
+export type UserUpdateToOneWithWhereWithoutStoriesInput = {
+  where?: Prisma.UserWhereInput
   data: Prisma.XOR<Prisma.UserUpdateWithoutStoriesInput, Prisma.UserUncheckedUpdateWithoutStoriesInput>
-}
-
-export type UserUpdateManyWithWhereWithoutStoriesInput = {
-  where: Prisma.UserScalarWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateManyMutationInput, Prisma.UserUncheckedUpdateManyWithoutStoriesInput>
-}
-
-export type UserScalarWhereInput = {
-  AND?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  OR?: Prisma.UserScalarWhereInput[]
-  NOT?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
-  id?: Prisma.StringFilter<"User"> | string
-  email?: Prisma.StringFilter<"User"> | string
-  username?: Prisma.StringFilter<"User"> | string
-  password?: Prisma.StringNullableFilter<"User"> | string | null
-  image?: Prisma.StringNullableFilter<"User"> | string | null
 }
 
 export type UserUpdateWithoutStoriesInput = {
@@ -422,6 +455,9 @@ export type UserUpdateWithoutStoriesInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutStoriesInput = {
@@ -430,14 +466,189 @@ export type UserUncheckedUpdateWithoutStoriesInput = {
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUncheckedUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserUncheckedUpdateManyWithoutStoriesInput = {
+export type UserCreateWithoutViewsInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  likes?: Prisma.StoryLikeCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  stories?: Prisma.StoryCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutViewsInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  likes?: Prisma.StoryLikeUncheckedCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  stories?: Prisma.StoryUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutViewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutViewsInput, Prisma.UserUncheckedCreateWithoutViewsInput>
+}
+
+export type UserUpsertWithoutViewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutViewsInput, Prisma.UserUncheckedUpdateWithoutViewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutViewsInput, Prisma.UserUncheckedCreateWithoutViewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutViewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutViewsInput, Prisma.UserUncheckedUpdateWithoutViewsInput>
+}
+
+export type UserUpdateWithoutViewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   username?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  likes?: Prisma.StoryLikeUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  stories?: Prisma.StoryUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutViewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  likes?: Prisma.StoryLikeUncheckedUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  stories?: Prisma.StoryUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutLikesInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  views?: Prisma.StoryViewCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  stories?: Prisma.StoryCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutLikesInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  views?: Prisma.StoryViewUncheckedCreateNestedManyWithoutUserInput
+  comment?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  stories?: Prisma.StoryUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutLikesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+}
+
+export type UserUpsertWithoutLikesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLikesInput, Prisma.UserUncheckedCreateWithoutLikesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutLikesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLikesInput, Prisma.UserUncheckedUpdateWithoutLikesInput>
+}
+
+export type UserUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  stories?: Prisma.StoryUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUncheckedUpdateManyWithoutUserNestedInput
+  comment?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  stories?: Prisma.StoryUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutCommentInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  views?: Prisma.StoryViewCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeCreateNestedManyWithoutUserInput
+  stories?: Prisma.StoryCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutCommentInput = {
+  id?: string
+  email: string
+  username: string
+  password?: string | null
+  image?: string | null
+  views?: Prisma.StoryViewUncheckedCreateNestedManyWithoutUserInput
+  likes?: Prisma.StoryLikeUncheckedCreateNestedManyWithoutUserInput
+  stories?: Prisma.StoryUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutCommentInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentInput, Prisma.UserUncheckedCreateWithoutCommentInput>
+}
+
+export type UserUpsertWithoutCommentInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutCommentInput, Prisma.UserUncheckedUpdateWithoutCommentInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutCommentInput, Prisma.UserUncheckedCreateWithoutCommentInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutCommentInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutCommentInput, Prisma.UserUncheckedUpdateWithoutCommentInput>
+}
+
+export type UserUpdateWithoutCommentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUpdateManyWithoutUserNestedInput
+  stories?: Prisma.StoryUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutCommentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  views?: Prisma.StoryViewUncheckedUpdateManyWithoutUserNestedInput
+  likes?: Prisma.StoryLikeUncheckedUpdateManyWithoutUserNestedInput
+  stories?: Prisma.StoryUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 
@@ -446,10 +657,16 @@ export type UserUncheckedUpdateManyWithoutStoriesInput = {
  */
 
 export type UserCountOutputType = {
+  views: number
+  likes: number
+  comment: number
   stories: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  views?: boolean | UserCountOutputTypeCountViewsArgs
+  likes?: boolean | UserCountOutputTypeCountLikesArgs
+  comment?: boolean | UserCountOutputTypeCountCommentArgs
   stories?: boolean | UserCountOutputTypeCountStoriesArgs
 }
 
@@ -466,6 +683,27 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountViewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StoryViewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.StoryLikeWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountCommentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountStoriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.StoryWhereInput
 }
@@ -477,6 +715,9 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   username?: boolean
   password?: boolean
   image?: boolean
+  views?: boolean | Prisma.User$viewsArgs<ExtArgs>
+  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
+  comment?: boolean | Prisma.User$commentArgs<ExtArgs>
   stories?: boolean | Prisma.User$storiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -507,6 +748,9 @@ export type UserSelectScalar = {
 
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "username" | "password" | "image", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  views?: boolean | Prisma.User$viewsArgs<ExtArgs>
+  likes?: boolean | Prisma.User$likesArgs<ExtArgs>
+  comment?: boolean | Prisma.User$commentArgs<ExtArgs>
   stories?: boolean | Prisma.User$storiesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -516,6 +760,9 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
+    views: Prisma.$StoryViewPayload<ExtArgs>[]
+    likes: Prisma.$StoryLikePayload<ExtArgs>[]
+    comment: Prisma.$CommentPayload<ExtArgs>[]
     stories: Prisma.$StoryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -918,6 +1165,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  views<T extends Prisma.User$viewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$viewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StoryViewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  likes<T extends Prisma.User$likesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StoryLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  comment<T extends Prisma.User$commentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   stories<T extends Prisma.User$storiesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$storiesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1343,6 +1593,78 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Users to delete.
    */
   limit?: number
+}
+
+/**
+ * User.views
+ */
+export type User$viewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StoryView
+   */
+  select?: Prisma.StoryViewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StoryView
+   */
+  omit?: Prisma.StoryViewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StoryViewInclude<ExtArgs> | null
+  where?: Prisma.StoryViewWhereInput
+  orderBy?: Prisma.StoryViewOrderByWithRelationInput | Prisma.StoryViewOrderByWithRelationInput[]
+  cursor?: Prisma.StoryViewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StoryViewScalarFieldEnum | Prisma.StoryViewScalarFieldEnum[]
+}
+
+/**
+ * User.likes
+ */
+export type User$likesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the StoryLike
+   */
+  select?: Prisma.StoryLikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the StoryLike
+   */
+  omit?: Prisma.StoryLikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.StoryLikeInclude<ExtArgs> | null
+  where?: Prisma.StoryLikeWhereInput
+  orderBy?: Prisma.StoryLikeOrderByWithRelationInput | Prisma.StoryLikeOrderByWithRelationInput[]
+  cursor?: Prisma.StoryLikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.StoryLikeScalarFieldEnum | Prisma.StoryLikeScalarFieldEnum[]
+}
+
+/**
+ * User.comment
+ */
+export type User$commentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**

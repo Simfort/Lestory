@@ -1,7 +1,7 @@
 import { CATEGORIES } from "@/lib/categories";
 import useLang from "@/lib/hooks/useLang";
 import { Check } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import useCreateStore from "@/store/useCreateStore";
 
@@ -14,8 +14,9 @@ export default function Category() {
   const [other, setOther] = useState("");
   const { data, setData } = useCreateStore();
   const [flagOther, setFlagOther] = useState(false);
-  const lang = useLang();
+  const [lang] = useLang();
   const containerRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (
@@ -35,13 +36,13 @@ export default function Category() {
     return () => {
       document.removeEventListener("click", handleClick);
     };
-  }, []);
+  }, [flagModal]);
   return (
     <div ref={containerRef} className="relative">
       <button
         aria-label="Кнокпка открывает панель с жанрами"
         onClick={() => setFlagModal(!flagModal)}
-        className="p-3 rounded-xl shadow  w-70.25 border border-amber-200 focus:border-amber-400 md:w-100">
+        className={` px-4 py-2 bg-white border border-blue-200 w-full rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400`}>
         <p className="capitalize">
           {selected
             ? CATEGORIES[selected][lang]

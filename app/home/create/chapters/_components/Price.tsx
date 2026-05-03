@@ -9,7 +9,7 @@ const titlePrice = { en: "Price", ru: "Цена" };
 const free = { en: "Free", ru: "Бесплатно" };
 
 export default function Price() {
-  const lang = useLang();
+  const [lang] = useLang();
 
   const [flagFree, setFreeFlag] = useState(false);
   const { data, setData } = useCreateStore();
@@ -28,7 +28,7 @@ export default function Price() {
         onChange={(e) => setPrice(e.target.value)}
         step={0.01}
         value={flagFree ? 0 : price}
-        className="p-3 rounded-xl shadow outline-0 border w-full border-amber-200 focus:border-amber-400"
+        className={` px-4 py-2 bg-white border border-blue-200 w-full rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400`}
       />
       <div className="flex gap-2 items-center">
         <p className={`font-bold text-gray-500 `}>{free[lang]}</p>

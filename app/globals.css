@@ -1,23 +1,53 @@
 @import "tailwindcss";
 
 :root {
+  /* Базовая светлая тема */
   --background: #ffffff;
-  --foreground: #0a0a0a;
-  --accent-text: #ffd52c;
+  --foreground: #1a1a1a;
+  --accent-text: #7c3aed; /* Фиолетовый — более мягкий и современный */
+  --secondary: #f8fafc; /* Лёгкий голубой оттенок для вторичных элементов */
+  --border: #e2e8f0; /* Цвет границ — светло‑серый */
+  --muted: #64748b; /* Приглушённые тексты */
+}
+
+[data-theme="light"] {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --accent-text: #7c3aed;
+  --secondary: #f8fafc;
+  --border: #e2e8f0;
+  --muted: #64748b;
+}
+
+/* Тёмная тема — глубокие, но не резкие цвета */
+[data-theme="dark"] {
+  --background: #0f0f1a; /* Тёмно‑синий вместо чистого чёрного */
+  --foreground: #e2e8f0; /* Светло‑серый вместо белого для комфорта глаз */
+  --accent-text: #a78bfa; /* Более светлый фиолетовый для лучшей видимости */
+  --secondary: #1e1e2d; /* Тёмный фон для карточек */
+  --border: #37374d; /* Границы в тёмной теме */
+  --muted: #94a3b8; /* Приглушённые тексты в тёмной теме */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-accent-text: var(--accent-text);
+  --color-secondary: var(--secondary);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Системная тёмная тема — fallback */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ffd52c;
+  :root:not([data-theme]) {
+    --background: #0f0f1a;
+    --foreground: #e2e8f0;
+    --secondary: #1e1e2d;
+    --border: #37374d;
+    --muted: #94a3b8;
   }
 }
 
@@ -115,4 +145,33 @@ code {
 }
 [data-scroll] {
   scrollbar-width: none;
+}
+.eye-blink {
+  animation: blink 4s ease-in-out infinite;
+}
+@keyframes blink {
+  0%,
+  48%,
+  52%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+<!-- Анимация покачивания ушей -- > .ear-wiggle {
+  animation: wiggle 6s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-5deg);
+  }
+  75% {
+    transform: rotate(5deg);
+  }
 }

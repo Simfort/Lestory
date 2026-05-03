@@ -1,47 +1,39 @@
 "use client";
-
+import { Suspense } from "react";
+import Story from "./_components/Story";
 import { useQuery } from "@tanstack/react-query";
 import { useSession } from "next-auth/react";
-import { useParams } from "next/navigation";
-
-import Story from "./_components/Story";
-import { Loader } from "lucide-react";
 
 export default function Page() {
-  const { storyId } = useParams();
   const { data: session } = useSession();
-  const getAndViewingUser = async () => {
-    const res = await fetch(
-      `/api/story/views?id=${storyId}&user=${session!.user!.id}`,
-      {
-        method: "PATCH",
-      },
-    );
-    const data = await res.json();
-    console.log(data);
-    return data;
+  const getStory = async () => {
+    const storyId = window.location.pathname.split("/").pop();
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/story/views?id=${storyId}&user=${(session?.user as { id: string }).id}`,
+        {
+          method: "PATCH",
+        },
+      );
+
+      const data = await res.json();
+
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   };
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["storyViews", session],
-    queryFn: getAndViewingUser,
-    enabled: !!storyId && !!session, // Включаем запрос только при наличии storyId и сессии
-    retry: 2, // Автоповтор при ошибке (максимум 2 раза)
-    staleTime: 5 * 60 * 1000, // Кэшируем на 5 минут
-    refetchOnWindowFocus: false, // Не перезагружаем при фокусе окна
-    refetchOnMount: true,
+
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["storyView"],
+    queryFn: getStory,
+    enabled: session ? true : false,
   });
-  if (isLoading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center">
-        <Loader className="animate-spin" size={100} />
-      </div>
-    );
-  }
-  if (error) {
-  }
+  console.log(data);
   return (
-    <div className="py-10 overflow-y-scroll h-screen  ">
-      {data && <Story story={data} />}
+    <div className=" bg-gray-200  pb-20 pt-20  overflow-y-scroll h-screen ">
+      {isPending ? <p>LOading</p> : <Story story={data} />}
     </div>
   );
 }

@@ -80,7 +80,7 @@ export default function ChapterItem({
 
   return (
     <div
-      className="bg-gray-200/50 shadow relative rounded-xl items-center justify-between flex pr-5   w-full"
+      className="bg-gray-200/50 shadow relative rounded-md items-center justify-between flex pr-5   w-full"
       key={chapter.title}>
       <input
         onChange={handleChangeFile}
@@ -88,7 +88,7 @@ export default function ChapterItem({
         type="file"
         hidden
       />
-      <div className="p-2 bg-gray-400/20 h-full  text-foreground/40 rounded-l-xl">
+      <div className="p-2 bg-gray-400/20 h-full  text-foreground/40 rounded-l-md">
         {index + 1}
       </div>
       {newTitle === null ? (

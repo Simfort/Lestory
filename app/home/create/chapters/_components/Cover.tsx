@@ -25,7 +25,7 @@ const titleContent = {
 };
 
 export default function Cover() {
-  const lang = useLang();
+  const [lang] = useLang();
   const [url, setUrl] = useState("");
   const { data, setData } = useCreateStore();
   const currentUrl = data.cover;
@@ -84,12 +84,12 @@ export default function Cover() {
           accept=".png,.jpeg,.webp"
         />
         <button
-          className="bg-amber-300 rounded-xl shadow p-2 hover:opacity-75 active:opacity-50 transition-opacity w-full  font-medium"
+          className="bg-accent-text rounded-md text-background p-2 hover:opacity-75 active:opacity-50 transition-opacity w-full  font-medium"
           onClick={handleGetFile}>
           {textButton[lang]}
         </button>
       </div>
-      <div className="grow  p-2 bg-gray-50 rounded-lg">
+      <div className="grow  p-2 bg-gray-50 rounded-md">
         {flagCrop && (
           <CropEditor
             setCurrentUrl={setCurrentUrl}

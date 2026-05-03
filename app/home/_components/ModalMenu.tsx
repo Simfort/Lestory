@@ -24,7 +24,7 @@ export default function ModalMenu({
   setOpenMenu: (arg: boolean) => void;
 }) {
   const { data: session, status } = useSession();
-  const lang = useLang();
+  const [lang] = useLang();
 
   return createPortal(
     <motion.aside

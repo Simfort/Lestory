@@ -23,8 +23,9 @@ export default async function Page({
     }
   };
   const story = await getStory();
+  console.log(story);
   return (
-    <div className="flex flex-col bg-radial to-white from-gray-200  overflow-y-scroll h-screen items-center ">
+    <div className=" bg-gray-200    overflow-y-scroll h-screen ">
       {" "}
       <Suspense fallback={<p>Loading..</p>}>
         {" "}

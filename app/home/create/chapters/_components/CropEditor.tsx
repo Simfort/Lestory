@@ -41,7 +41,8 @@ export default function CropEditor({
   }, [url]);
 
   const cropImage = () => {
-    if (!canvasRef.current || !imageRef.current) return;
+    if (!canvasRef.current || !imageRef.current || !containerRef.current)
+      return;
 
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
@@ -50,8 +51,12 @@ export default function CropEditor({
     canvas.width = cropStat.width;
     canvas.height = cropStat.height;
 
-    const scaleX = imageRef.current.naturalWidth / canvasRef.current.width;
-    const scaleY = imageRef.current.naturalHeight / canvasRef.current.height;
+    const container = containerRef.current;
+    const containerRect = container.getBoundingClientRect();
+
+    // Корректные коэффициенты масштабирования
+    const scaleX = imageRef.current.naturalWidth / containerRect.width;
+    const scaleY = imageRef.current.naturalHeight / containerRect.height;
 
     ctx.drawImage(
       imageRef.current,
@@ -64,6 +69,7 @@ export default function CropEditor({
       cropStat.width,
       cropStat.height,
     );
+
     const currentUrl = canvas.toDataURL("image/png");
     setCurrentUrl(currentUrl);
     setData({ ...data, cover: currentUrl });

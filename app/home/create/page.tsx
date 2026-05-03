@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export default function Page() {
-  const lang = useLang();
+  const [lang] = useLang();
   const [method, setMethod] = useState<number | null>(null);
   return (
     <div className="flex items-center justify-center  h-screen  gap-10 flex-col">
@@ -14,9 +14,9 @@ export default function Page() {
       <Link
         href={"/home/create/chapters"}
         onClick={() => setMethod(0)}
-        className={`border-2 text-start rounded-xl px-5  h-30   flex items-center gap-5  w-80 ${method === 0 ? "bg-blue-500/10" : "bg-blue-50/50"} border-blue-500/50`}>
+        className={`border-2 text-start rounded-xl px-5  h-30   flex items-center gap-5  w-80 ${method === 0 ? "bg-blue-500/10" : "bg-blue-50/50"} border-accent-text/50`}>
         <div
-          className={`size-4 border-blue-400 ${method === 0 ? "bg-blue-400/50" : " bg-white"} border rounded-full shrink-0`}></div>
+          className={`size-4 border-accent-text ${method === 0 ? "bg-accent-text/50" : " bg-white"} border rounded-full shrink-0`}></div>
         <div>
           <h4 className="text-foreground">
             {LANGUAGE_TEXTS.createPage.method.chapters[lang]}
@@ -29,9 +29,9 @@ export default function Page() {
       <Link
         href={"/home/create/chapters"}
         onClick={() => setMethod(1)}
-        className={`border-2 text-start rounded-xl px-5  h-30    flex items-center gap-5  w-80 ${method === 1 ? "bg-blue-500/10" : "bg-blue-50/50"} border-blue-500/50`}>
+        className={`border-2 text-start rounded-xl px-5  h-30    flex items-center gap-5  w-80 ${method === 1 ? "bg-blue-500/10" : "bg-blue-50/50"} border-accent-text/50`}>
         <div
-          className={`size-4 border-blue-400 ${method === 1 ? "bg-blue-400/50" : " bg-white"} border rounded-full shrink-0`}></div>
+          className={`size-4 border-accent-text ${method === 1 ? "bg-accent-text/50" : " bg-white"} border rounded-full shrink-0`}></div>
         <div>
           <h4 className="text-foreground">
             {LANGUAGE_TEXTS.createPage.method.all[lang]}

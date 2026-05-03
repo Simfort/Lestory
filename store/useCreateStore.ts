@@ -12,7 +12,6 @@ const useCreateStore = create<UseCreateStore>((set) => ({
     keywords: "",
     chapters: [],
     price: "",
-    authors: "",
   },
   setError: (arg) => {
     set({ errors: arg });

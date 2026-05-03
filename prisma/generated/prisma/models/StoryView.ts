@@ -39,28 +39,28 @@ export type StoryViewSumAggregateOutputType = {
 export type StoryViewMinAggregateOutputType = {
   id: number | null
   storyId: number | null
-  userId: string | null
   ip: string | null
   viewedAt: Date | null
   userAgent: string | null
+  userId: string | null
 }
 
 export type StoryViewMaxAggregateOutputType = {
   id: number | null
   storyId: number | null
-  userId: string | null
   ip: string | null
   viewedAt: Date | null
   userAgent: string | null
+  userId: string | null
 }
 
 export type StoryViewCountAggregateOutputType = {
   id: number
   storyId: number
-  userId: number
   ip: number
   viewedAt: number
   userAgent: number
+  userId: number
   _all: number
 }
 
@@ -78,28 +78,28 @@ export type StoryViewSumAggregateInputType = {
 export type StoryViewMinAggregateInputType = {
   id?: true
   storyId?: true
-  userId?: true
   ip?: true
   viewedAt?: true
   userAgent?: true
+  userId?: true
 }
 
 export type StoryViewMaxAggregateInputType = {
   id?: true
   storyId?: true
-  userId?: true
   ip?: true
   viewedAt?: true
   userAgent?: true
+  userId?: true
 }
 
 export type StoryViewCountAggregateInputType = {
   id?: true
   storyId?: true
-  userId?: true
   ip?: true
   viewedAt?: true
   userAgent?: true
+  userId?: true
   _all?: true
 }
 
@@ -192,10 +192,10 @@ export type StoryViewGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 export type StoryViewGroupByOutputType = {
   id: number
   storyId: number
-  userId: string | null
   ip: string
   viewedAt: Date
   userAgent: string | null
+  userId: string | null
   _count: StoryViewCountAggregateOutputType | null
   _avg: StoryViewAvgAggregateOutputType | null
   _sum: StoryViewSumAggregateOutputType | null
@@ -224,21 +224,23 @@ export type StoryViewWhereInput = {
   NOT?: Prisma.StoryViewWhereInput | Prisma.StoryViewWhereInput[]
   id?: Prisma.IntFilter<"StoryView"> | number
   storyId?: Prisma.IntFilter<"StoryView"> | number
-  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
   ip?: Prisma.StringFilter<"StoryView"> | string
   viewedAt?: Prisma.DateTimeFilter<"StoryView"> | Date | string
   userAgent?: Prisma.StringNullableFilter<"StoryView"> | string | null
+  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
   story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }
 
 export type StoryViewOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   ip?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
   userAgent?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   story?: Prisma.StoryOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type StoryViewWhereUniqueInput = Prisma.AtLeast<{
@@ -248,20 +250,21 @@ export type StoryViewWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.StoryViewWhereInput[]
   NOT?: Prisma.StoryViewWhereInput | Prisma.StoryViewWhereInput[]
   storyId?: Prisma.IntFilter<"StoryView"> | number
-  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
   ip?: Prisma.StringFilter<"StoryView"> | string
   viewedAt?: Prisma.DateTimeFilter<"StoryView"> | Date | string
   userAgent?: Prisma.StringNullableFilter<"StoryView"> | string | null
+  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
   story?: Prisma.XOR<Prisma.StoryScalarRelationFilter, Prisma.StoryWhereInput>
+  user?: Prisma.XOR<Prisma.UserNullableScalarRelationFilter, Prisma.UserWhereInput> | null
 }, "id" | "storyId_ip">
 
 export type StoryViewOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
-  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   ip?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
   userAgent?: Prisma.SortOrderInput | Prisma.SortOrder
+  userId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.StoryViewCountOrderByAggregateInput
   _avg?: Prisma.StoryViewAvgOrderByAggregateInput
   _max?: Prisma.StoryViewMaxOrderByAggregateInput
@@ -275,57 +278,56 @@ export type StoryViewScalarWhereWithAggregatesInput = {
   NOT?: Prisma.StoryViewScalarWhereWithAggregatesInput | Prisma.StoryViewScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"StoryView"> | number
   storyId?: Prisma.IntWithAggregatesFilter<"StoryView"> | number
-  userId?: Prisma.StringNullableWithAggregatesFilter<"StoryView"> | string | null
   ip?: Prisma.StringWithAggregatesFilter<"StoryView"> | string
   viewedAt?: Prisma.DateTimeWithAggregatesFilter<"StoryView"> | Date | string
   userAgent?: Prisma.StringNullableWithAggregatesFilter<"StoryView"> | string | null
+  userId?: Prisma.StringNullableWithAggregatesFilter<"StoryView"> | string | null
 }
 
 export type StoryViewCreateInput = {
-  userId?: string | null
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
   story: Prisma.StoryCreateNestedOneWithoutViewsInput
+  user?: Prisma.UserCreateNestedOneWithoutViewsInput
 }
 
 export type StoryViewUncheckedCreateInput = {
   id?: number
   storyId: number
-  userId?: string | null
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
+  userId?: string | null
 }
 
 export type StoryViewUpdateInput = {
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   story?: Prisma.StoryUpdateOneRequiredWithoutViewsNestedInput
+  user?: Prisma.UserUpdateOneWithoutViewsNestedInput
 }
 
 export type StoryViewUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   storyId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoryViewCreateManyInput = {
   id?: number
   storyId: number
-  userId?: string | null
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
+  userId?: string | null
 }
 
 export type StoryViewUpdateManyMutationInput = {
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -334,10 +336,10 @@ export type StoryViewUpdateManyMutationInput = {
 export type StoryViewUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   storyId?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoryViewListRelationFilter = {
@@ -358,10 +360,10 @@ export type StoryViewStoryIdIpCompoundUniqueInput = {
 export type StoryViewCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ip?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
   userAgent?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type StoryViewAvgOrderByAggregateInput = {
@@ -372,24 +374,66 @@ export type StoryViewAvgOrderByAggregateInput = {
 export type StoryViewMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ip?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
   userAgent?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type StoryViewMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
-  userId?: Prisma.SortOrder
   ip?: Prisma.SortOrder
   viewedAt?: Prisma.SortOrder
   userAgent?: Prisma.SortOrder
+  userId?: Prisma.SortOrder
 }
 
 export type StoryViewSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   storyId?: Prisma.SortOrder
+}
+
+export type StoryViewCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput> | Prisma.StoryViewCreateWithoutUserInput[] | Prisma.StoryViewUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.StoryViewCreateOrConnectWithoutUserInput | Prisma.StoryViewCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.StoryViewCreateManyUserInputEnvelope
+  connect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+}
+
+export type StoryViewUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput> | Prisma.StoryViewCreateWithoutUserInput[] | Prisma.StoryViewUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.StoryViewCreateOrConnectWithoutUserInput | Prisma.StoryViewCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.StoryViewCreateManyUserInputEnvelope
+  connect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+}
+
+export type StoryViewUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput> | Prisma.StoryViewCreateWithoutUserInput[] | Prisma.StoryViewUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.StoryViewCreateOrConnectWithoutUserInput | Prisma.StoryViewCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.StoryViewUpsertWithWhereUniqueWithoutUserInput | Prisma.StoryViewUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.StoryViewCreateManyUserInputEnvelope
+  set?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  disconnect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  delete?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  connect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  update?: Prisma.StoryViewUpdateWithWhereUniqueWithoutUserInput | Prisma.StoryViewUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.StoryViewUpdateManyWithWhereWithoutUserInput | Prisma.StoryViewUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
+}
+
+export type StoryViewUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput> | Prisma.StoryViewCreateWithoutUserInput[] | Prisma.StoryViewUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.StoryViewCreateOrConnectWithoutUserInput | Prisma.StoryViewCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.StoryViewUpsertWithWhereUniqueWithoutUserInput | Prisma.StoryViewUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.StoryViewCreateManyUserInputEnvelope
+  set?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  disconnect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  delete?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  connect?: Prisma.StoryViewWhereUniqueInput | Prisma.StoryViewWhereUniqueInput[]
+  update?: Prisma.StoryViewUpdateWithWhereUniqueWithoutUserInput | Prisma.StoryViewUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.StoryViewUpdateManyWithWhereWithoutUserInput | Prisma.StoryViewUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
 }
 
 export type StoryViewCreateNestedManyWithoutStoryInput = {
@@ -434,19 +478,72 @@ export type StoryViewUncheckedUpdateManyWithoutStoryNestedInput = {
   deleteMany?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
 }
 
-export type StoryViewCreateWithoutStoryInput = {
-  userId?: string | null
+export type StoryViewCreateWithoutUserInput = {
+  ip: string
+  viewedAt?: Date | string
+  userAgent?: string | null
+  story: Prisma.StoryCreateNestedOneWithoutViewsInput
+}
+
+export type StoryViewUncheckedCreateWithoutUserInput = {
+  id?: number
+  storyId: number
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
 }
 
-export type StoryViewUncheckedCreateWithoutStoryInput = {
-  id?: number
-  userId?: string | null
+export type StoryViewCreateOrConnectWithoutUserInput = {
+  where: Prisma.StoryViewWhereUniqueInput
+  create: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput>
+}
+
+export type StoryViewCreateManyUserInputEnvelope = {
+  data: Prisma.StoryViewCreateManyUserInput | Prisma.StoryViewCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type StoryViewUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.StoryViewWhereUniqueInput
+  update: Prisma.XOR<Prisma.StoryViewUpdateWithoutUserInput, Prisma.StoryViewUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.StoryViewCreateWithoutUserInput, Prisma.StoryViewUncheckedCreateWithoutUserInput>
+}
+
+export type StoryViewUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.StoryViewWhereUniqueInput
+  data: Prisma.XOR<Prisma.StoryViewUpdateWithoutUserInput, Prisma.StoryViewUncheckedUpdateWithoutUserInput>
+}
+
+export type StoryViewUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.StoryViewScalarWhereInput
+  data: Prisma.XOR<Prisma.StoryViewUpdateManyMutationInput, Prisma.StoryViewUncheckedUpdateManyWithoutUserInput>
+}
+
+export type StoryViewScalarWhereInput = {
+  AND?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
+  OR?: Prisma.StoryViewScalarWhereInput[]
+  NOT?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
+  id?: Prisma.IntFilter<"StoryView"> | number
+  storyId?: Prisma.IntFilter<"StoryView"> | number
+  ip?: Prisma.StringFilter<"StoryView"> | string
+  viewedAt?: Prisma.DateTimeFilter<"StoryView"> | Date | string
+  userAgent?: Prisma.StringNullableFilter<"StoryView"> | string | null
+  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
+}
+
+export type StoryViewCreateWithoutStoryInput = {
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
+  user?: Prisma.UserCreateNestedOneWithoutViewsInput
+}
+
+export type StoryViewUncheckedCreateWithoutStoryInput = {
+  id?: number
+  ip: string
+  viewedAt?: Date | string
+  userAgent?: string | null
+  userId?: string | null
 }
 
 export type StoryViewCreateOrConnectWithoutStoryInput = {
@@ -475,47 +572,66 @@ export type StoryViewUpdateManyWithWhereWithoutStoryInput = {
   data: Prisma.XOR<Prisma.StoryViewUpdateManyMutationInput, Prisma.StoryViewUncheckedUpdateManyWithoutStoryInput>
 }
 
-export type StoryViewScalarWhereInput = {
-  AND?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
-  OR?: Prisma.StoryViewScalarWhereInput[]
-  NOT?: Prisma.StoryViewScalarWhereInput | Prisma.StoryViewScalarWhereInput[]
-  id?: Prisma.IntFilter<"StoryView"> | number
-  storyId?: Prisma.IntFilter<"StoryView"> | number
-  userId?: Prisma.StringNullableFilter<"StoryView"> | string | null
-  ip?: Prisma.StringFilter<"StoryView"> | string
-  viewedAt?: Prisma.DateTimeFilter<"StoryView"> | Date | string
-  userAgent?: Prisma.StringNullableFilter<"StoryView"> | string | null
-}
-
-export type StoryViewCreateManyStoryInput = {
+export type StoryViewCreateManyUserInput = {
   id?: number
-  userId?: string | null
+  storyId: number
   ip: string
   viewedAt?: Date | string
   userAgent?: string | null
 }
 
-export type StoryViewUpdateWithoutStoryInput = {
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+export type StoryViewUpdateWithoutUserInput = {
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  story?: Prisma.StoryUpdateOneRequiredWithoutViewsNestedInput
+}
+
+export type StoryViewUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  storyId?: Prisma.IntFieldUpdateOperationsInput | number
+  ip?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type StoryViewUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  storyId?: Prisma.IntFieldUpdateOperationsInput | number
+  ip?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+}
+
+export type StoryViewCreateManyStoryInput = {
+  id?: number
+  ip: string
+  viewedAt?: Date | string
+  userAgent?: string | null
+  userId?: string | null
+}
+
+export type StoryViewUpdateWithoutStoryInput = {
+  ip?: Prisma.StringFieldUpdateOperationsInput | string
+  viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user?: Prisma.UserUpdateOneWithoutViewsNestedInput
 }
 
 export type StoryViewUncheckedUpdateWithoutStoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type StoryViewUncheckedUpdateManyWithoutStoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   ip?: Prisma.StringFieldUpdateOperationsInput | string
   viewedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   userAgent?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  userId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 
@@ -523,65 +639,72 @@ export type StoryViewUncheckedUpdateManyWithoutStoryInput = {
 export type StoryViewSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   storyId?: boolean
-  userId?: boolean
   ip?: boolean
   viewedAt?: boolean
   userAgent?: boolean
+  userId?: boolean
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }, ExtArgs["result"]["storyView"]>
 
 export type StoryViewSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   storyId?: boolean
-  userId?: boolean
   ip?: boolean
   viewedAt?: boolean
   userAgent?: boolean
+  userId?: boolean
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }, ExtArgs["result"]["storyView"]>
 
 export type StoryViewSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   storyId?: boolean
-  userId?: boolean
   ip?: boolean
   viewedAt?: boolean
   userAgent?: boolean
+  userId?: boolean
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }, ExtArgs["result"]["storyView"]>
 
 export type StoryViewSelectScalar = {
   id?: boolean
   storyId?: boolean
-  userId?: boolean
   ip?: boolean
   viewedAt?: boolean
   userAgent?: boolean
+  userId?: boolean
 }
 
-export type StoryViewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "storyId" | "userId" | "ip" | "viewedAt" | "userAgent", ExtArgs["result"]["storyView"]>
+export type StoryViewOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "storyId" | "ip" | "viewedAt" | "userAgent" | "userId", ExtArgs["result"]["storyView"]>
 export type StoryViewInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }
 export type StoryViewIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }
 export type StoryViewIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   story?: boolean | Prisma.StoryDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.StoryView$userArgs<ExtArgs>
 }
 
 export type $StoryViewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "StoryView"
   objects: {
     story: Prisma.$StoryPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     storyId: number
-    userId: string | null
     ip: string
     viewedAt: Date
     userAgent: string | null
+    userId: string | null
   }, ExtArgs["result"]["storyView"]>
   composites: {}
 }
@@ -977,6 +1100,7 @@ readonly fields: StoryViewFieldRefs;
 export interface Prisma__StoryViewClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   story<T extends Prisma.StoryDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StoryDefaultArgs<ExtArgs>>): Prisma.Prisma__StoryClient<runtime.Types.Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.StoryView$userArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.StoryView$userArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1008,10 +1132,10 @@ export interface Prisma__StoryViewClient<T, Null = never, ExtArgs extends runtim
 export interface StoryViewFieldRefs {
   readonly id: Prisma.FieldRef<"StoryView", 'Int'>
   readonly storyId: Prisma.FieldRef<"StoryView", 'Int'>
-  readonly userId: Prisma.FieldRef<"StoryView", 'String'>
   readonly ip: Prisma.FieldRef<"StoryView", 'String'>
   readonly viewedAt: Prisma.FieldRef<"StoryView", 'DateTime'>
   readonly userAgent: Prisma.FieldRef<"StoryView", 'String'>
+  readonly userId: Prisma.FieldRef<"StoryView", 'String'>
 }
     
 
@@ -1410,6 +1534,25 @@ export type StoryViewDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * Limit how many StoryViews to delete.
    */
   limit?: number
+}
+
+/**
+ * StoryView.user
+ */
+export type StoryView$userArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the User
+   */
+  select?: Prisma.UserSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the User
+   */
+  omit?: Prisma.UserOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserInclude<ExtArgs> | null
+  where?: Prisma.UserWhereInput
 }
 
 /**

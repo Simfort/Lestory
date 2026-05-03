@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import ProfileStat from "./_components/ProfileStat";
-import ProfileStories from "./_components/ProfileStories";
+import ProfileContainer from "./_components/ProfileContainer";
 
 export default async function Page({
-  searchParams,
+  params,
 }: {
-  searchParams: Promise<{ id: string }>;
+  params: Promise<{ id: string }>;
 }) {
-  const userId = (await searchParams).id;
+  const userId = (await params).id;
   const getUser = async () => {
     try {
       const res = await fetch(
@@ -27,11 +27,11 @@ export default async function Page({
   };
   const profile = await getUser();
   return (
-    <div className="flex flex-col bg-radial  to-white from-gray-200 p-5 overflow-y-scroll h-screen items-center ">
-      <div className="shadow bg-white w-full flex gap-5 flex-wrap py-10 justify-center items-center h-screen rounded-xl">
+    <div className="lg:grid bg-secondary lg:grid-cols-9 flex pt-20  p-5 overflow-y-scroll min-h-screen items-center ">
+      <div className="col-start-3 col-span-5  w-full flex flex-col gap-5  py-20  max-sm:py-0 md:h-screen min-h-screen rounded-xl">
         <Suspense fallback={<p>Loading...</p>}>
           <ProfileStat profile={profile} />
-          <ProfileStories profile={profile} userId={userId} />
+          <ProfileContainer profile={profile} />
         </Suspense>
       </div>
     </div>

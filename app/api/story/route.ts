@@ -1,8 +1,5 @@
-import { v4 as uuidv4 } from "uuid";
 import { prisma } from "@/config/prisma";
 import { NextRequest, NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { CreateData } from "@/lib/types";
 
 export async function GET(req: NextRequest) {
   try {
@@ -44,6 +41,7 @@ export async function GET(req: NextRequest) {
               username: true,
             },
           },
+          chapters: true,
           views: true,
           likes: true,
         },

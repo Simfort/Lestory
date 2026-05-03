@@ -5,7 +5,7 @@ import useLang from "@/lib/hooks/useLang";
 import { LANGUAGE_TEXTS } from "@/lib/language";
 
 export default function SignInMain() {
-  const lang = useLang();
+  const [lang] = useLang();
   return (
     <main className="w-full  p-2 shadow bg-gray-50 rounded-2xl ">
       <h1 className="text-foreground flex gap-2 items-center bg-accent-text p-2 rounded-2xl  font-bold text-2xl">

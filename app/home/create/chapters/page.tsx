@@ -80,7 +80,7 @@ export default function Page() {
         break;
       }
     case 3:
-      if (data.authors && data.price) {
+      if (data.price) {
         disabled = { back: false, next: false };
 
         update({ id: 1, ...data });
@@ -119,27 +119,28 @@ export default function Page() {
   };
 
   return (
-    <div className=" min-h-screen   pb-20 relative   p-2">
-      <div className="fixed inset-0 p-2 h-max w-screen">
+    <div className=" min-h-screen lg:flex lg:items-center  lg:justify-around pb-20 pt-20 relative   p-2">
+      <div></div>
+      <div className=" px-10 fixed lg:left-80 lg:top-40  max-sm:w-screen">
         {" "}
         <StepBar step={step || 0} />
       </div>{" "}
-      <div className="flex flex-col w-max ml-auto  mr-auto justify-center p-5 h-full">
+      <div className="flex flex-col w-max max-sm:ml-auto  max-sm:mr-auto justify-center p-5 h-full">
         <AnimatePresence mode="wait">
           {" "}
           {stepsComponents[step || 0]}
         </AnimatePresence>{" "}
-        <div className="flex  w-full justify-between gap-5 mt-2 ">
+        <div className="flex text-background  w-full justify-between gap-5 mt-2 ">
           {" "}
           <button
             disabled={disabled.back}
-            className="bg-amber-200 not-disabled:hover:bg-amber-300 transition-opacity disabled:bg-amber-100 font-bold p-2 rounded-xl "
+            className="bg-accent-text not-disabled:hover:bg-accent-text/20 transition-opacity  disabled:bg-accent-text/20 font-bold p-2 rounded-xl "
             onClick={handleBackStep}>
             <ArrowLeft />
           </button>
           <button
             disabled={disabled.next}
-            className="bg-amber-200 not-disabled:hover:bg-amber-300 transition-opacity  disabled:bg-amber-100 font-bold p-2 rounded-xl "
+            className="bg-accent-text not-disabled:hover:bg-muted transition-opacity  disabled:bg-muted font-bold p-2 rounded-xl "
             onClick={handleNextStep}>
             {step === stepsComponents.length - 1 ? "Create" : <ArrowRight />}
           </button>{" "}

@@ -34,6 +34,8 @@ export async function GET(req: NextRequest) {
         },
         include: {
           stories: true,
+          views: { include: { story: true } },
+          likes: { include: { story: true } },
         },
       });
     }

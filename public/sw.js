@@ -1,8 +1,6 @@
-// public/sw.js
 const CACHE_NAME = "nextjs-pages-cache-v1";
 const urlsToCache = [
   "/_next/static/chunks/%5Broot-of-the-server%5D__28bc9c2a._.css",
-  "/home",
 ];
 
 self.addEventListener("install", (event) => {
@@ -25,15 +23,28 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-async function putInCache(key, val) {
+// Сохраняет в кэш только GET‑запросы с успешными ответами
+async function putInCache(request, response) {
+  // Пропускаем POST и другие методы
+  if (request.method !== "GET") return;
+  // Пропускаем неудачные ответы
+  if (!response.ok) return;
+
   const cache = await caches.open(CACHE_NAME);
-  await cache.put(key, val);
+  await cache.put(request, response.clone());
 }
 
-// Возвращает ответ из кэша, если сеть недоступна
-async function getLastedReaded(request) {
-  return new Response(JSON.stringify({ offline: true }), {
-    headers: { "Content-Type": "application/json" },
+async function getFromCache(request) {
+  const cache = await caches.open(CACHE_NAME);
+  return await cache.match(request);
+}
+
+async function getOfflineResponse() {
+  const cache = await caches.open(CACHE_NAME);
+  const offlineResponse = await cache.match("/offline");
+  if (offlineResponse) return offlineResponse;
+  return new Response("<h1>Offline</h1><p>No internet connection</p>", {
+    headers: { "Content-Type": "text/html" },
   });
 }
 
@@ -44,34 +55,23 @@ self.addEventListener("fetch", (event) => {
   // Только для своего домена
   if (url.origin === location.origin) {
     // Для API /api/story/new — отдельная логика
-    if (url.pathname === "/api/story/new") {
-      event.respondWith(
-        fetch(request)
-          .then(async (response) => {
-            return response;
-          })
-          .catch(async () => {
-            // Если сеть недоступна — отдаём из кэста или оффлайн-ответ
-            return getLastedReaded(request);
-          }),
-      );
-    } else {
-      // Для остальных — стандартная стратегия: сначала сеть, при ошибке — кэш
-      event.respondWith(
-        fetch(request)
-          .then(async (res) => {
-            await putInCache(request, res.clone());
-            return res;
-          })
-          .catch(async () => {
-            const cachedResponse = await caches.match(request);
 
-            return cachedResponse || new Response("offline");
-          }),
-      );
-    }
+    // Для остальных запросов: сеть → кэш → офлайн
+    event.respondWith(
+      (async () => {
+        try {
+          const networkResponse = await fetch(request);
+          await putInCache(request, networkResponse);
+          return networkResponse;
+        } catch (error) {
+          const cachedResponse = await getFromCache(request);
+          if (cachedResponse) return cachedResponse;
+          return await getOfflineResponse();
+        }
+      })(),
+    );
   } else {
-    // Внешние ресурсы — всегда идём в сеть
+    // Внешние ресурсы — всегда в сеть
     event.respondWith(fetch(request));
   }
 });

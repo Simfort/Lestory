@@ -23,7 +23,7 @@ export default function Page() {
   }, [loading, error]);
   if (!preview) return <div>aBAME</div>;
   return (
-    <div className="bg-gray-800  text-white relative min-h-screen">
+    <div className="bg-gray-800  text-white lg:pt-15 relative min-h-screen">
       <aside className="flex-col p-2 gap-2 bg-black/50 h-full fixed flex w-50">
         <Link href={"/home/create/chapters?step=2"}>
           <ArrowLeft className="text-blue-500" />

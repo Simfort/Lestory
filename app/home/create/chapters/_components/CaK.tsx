@@ -8,7 +8,7 @@ const titleCa = { en: "Category", ru: "Жанр" };
 const titleKey = { en: "Keywords", ru: "Ключевые слова" };
 
 export default function CaK() {
-  const lang = useLang();
+  const [lang] = useLang();
   return (
     <motion.div
       initial={{ opacity: 0 }}

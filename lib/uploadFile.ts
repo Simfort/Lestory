@@ -40,13 +40,19 @@ export async function uploadFile(
         );
         continue;
       }
-
-      const filename = uuidv4();
-      await yadisk.uploadFile(filename, file, "/", signal);
-      console.log("Upload " + filename);
-      const fileUrl = await yadisk.getPublicUrl(filename, signal);
-      console.log("Public get " + filename);
-      chapter.images.push(fileUrl);
+      try {
+        const filename = uuidv4();
+        await yadisk.uploadFile(filename, file, "/", signal);
+        console.log("Upload " + filename);
+        const fileUrl = await yadisk.getPublicUrl(filename, signal);
+        console.log("Public get " + filename);
+        if (fileUrl) {
+          chapter.images.push(fileUrl);
+        }
+      } catch (error) {
+        console.error(error);
+        continue;
+      }
     }
 
     await prisma.chapter.create({ data: { ...chapter } });

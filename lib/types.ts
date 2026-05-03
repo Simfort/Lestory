@@ -1,4 +1,6 @@
 import {
+  Comment,
+  CommentLike,
   Story,
   StoryLike,
   StoryView,
@@ -31,7 +33,7 @@ export type CreateData = {
   chapters: Chapter[];
   category: string;
   keywords: string;
-  authors: string;
+
   price: string;
 };
 export type UseCreateStore = {
@@ -54,9 +56,15 @@ export type UseModal = {
   setModal: (arg: Modal | null) => void;
 };
 
+export type IStory = Story & {
+  views: StoryView[];
+  likes: StoryLike[];
+  author: User;
+  chapters: Chapter[];
+};
 export type UseStory = {
-  story: Story | null;
-  setStory: (arg: Story | null) => void;
+  story: IStory | null;
+  setStory: (arg: IStory | null) => void;
 };
 export type TStory = Story & { author: User } & { views: StoryView[] } & {
   likes: StoryLike[];
@@ -72,4 +80,39 @@ export type BGDataLoading = {
 export type UseLoadingBackground = {
   data: BGDataLoading;
   setData: (arg: BGDataLoading) => void;
+};
+export type IComment = Comment & {
+  answers: IComment[];
+  comment: IComment;
+  author: User;
+  likes: CommentLike[];
+};
+export type UseSearchOpen = {
+  searchOpen: boolean;
+  setSearchOpen: (arg: boolean) => void;
+};
+export type UseSelectedProfile = {
+  selected: number;
+  setSelected: (arg: number) => void;
+};
+
+export type ProfileOptionStories = {
+  sortBy: number;
+  list: number;
+  up: boolean;
+};
+export type UseOptionProfileFilter = {
+  options: ProfileOptionStories;
+  setOption: (arg: ProfileOptionStories) => void;
+};
+export type IStoryView = StoryView & { story: IStory };
+export type IStoryLikes = StoryLike & { story: IStory };
+export type IUser = User & {
+  stories: IStory[];
+  likes: IStoryLikes[];
+  views: IStoryView[];
+};
+export type UseLanguage = {
+  lang: string;
+  setLang: (arg: string) => void;
 };

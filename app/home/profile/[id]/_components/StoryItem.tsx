@@ -15,13 +15,19 @@ export default function StoryItem({
   return (
     <button
       onClick={() =>
-        router.push("/home/profile/story/" + story.id + "?id=" + userId)
+        router.push("/home/profile/" + userId + "/story/" + story.id)
       }
-      className="shadow p-2 bg-gray-200 hover:opacity-60 active:opacity-50 transition-opacity  rounded-xl ">
+      className=" p-2 hover:opacity-60 active:opacity-50 transition-opacity  rounded-xl ">
       {story.cover ? (
-        <Image src={story.cover} alt="story cover" width={200} height={400} />
+        <Image
+          src={story.cover}
+          alt="story cover"
+          width={150}
+          height={200}
+          className="max-sm:w-30 max-sm:h-40"
+        />
       ) : (
-        <div className="w-25 h-50"></div>
+        <div className="w-37.5 h-50"></div>
       )}
       <div>
         <h3>{story.title}</h3>

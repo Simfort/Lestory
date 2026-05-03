@@ -23,7 +23,7 @@ const titleDesc = {
 };
 
 export default function TitleInput() {
-  const lang = useLang();
+  const [lang] = useLang();
 
   const { setData, data } = useCreateStore();
   const handleChangeDesc = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -44,14 +44,14 @@ export default function TitleInput() {
         onChange={handleChangeTitle}
         type="text"
         value={data.title}
-        className="p-3 rounded-xl shadow outline-0 border  w-70.25 border-amber-200 focus:border-amber-400 md:w-100"
+        className={` px-4 py-2 bg-white border border-blue-200 w-full rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400`}
         placeholder={placeholder[lang]}
       />{" "}
       <h3>{titleDesc[lang]}</h3>
       <textarea
         onChange={handleChangeDesc}
         value={data.description}
-        className="p-3 rounded-xl shadow outline-0 border  w-70.25 border-amber-200 focus:border-amber-400 md:w-100"
+        className={` px-4 py-2 bg-white border border-blue-200 w-full rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 md:w-100`}
         placeholder={placeholderDesc[lang]}
       />
     </motion.div>

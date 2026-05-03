@@ -21,7 +21,7 @@ const titlePreview = {
 };
 
 export default function ChapterCreator() {
-  const lang = useLang();
+  const [lang] = useLang();
   const filePickerRef = useRef<HTMLInputElement | null>(null);
   const { setData, data } = useCreateStore();
   const chapters = data.chapters;
@@ -69,7 +69,7 @@ export default function ChapterCreator() {
           </p>{" "}
           <button
             onClick={handlePickFile}
-            className="text-amber-800 hover:opacity-50 active:opacity-40 transition-opacity gap-2 flex items-center justify-center bg-gray-200/50 shadow p-2 rounded-xl">
+            className="text-accent-text rounded-md hover:opacity-50 active:opacity-40 transition-opacity gap-2 flex items-center justify-center bg-gray-200/50 shadow p-2 ">
             <p>{titleButton[lang]}</p>
             <Plus />
           </button>

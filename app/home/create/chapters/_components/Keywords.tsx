@@ -20,7 +20,7 @@ const textCheck = {
 };
 
 export default function Keywords() {
-  const lang = useLang();
+  const [lang] = useLang();
 
   const [rightFlag, setRightFlag] = useState(false);
   const { setData, data } = useCreateStore();
@@ -54,7 +54,7 @@ export default function Keywords() {
         onChange={handleChange}
         value={keywords}
         placeholder={placeholdreKeys[lang]}
-        className="p-3 rounded-xl  w-70.25 shadow outline-0 border border-amber-200 focus:border-amber-400 md:w-100"
+        className={` px-4 py-2 bg-white border border-blue-200 w-full rounded-md shadow-sm outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 md:w-100`}
       />
       <motion.div
         layout
