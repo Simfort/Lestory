@@ -2,7 +2,7 @@ import useLang from "@/lib/hooks/useLang";
 import { LANGUAGE_TEXTS } from "@/lib/language";
 
 export default function LastBookSkeleton() {
-  const lang = useLang();
+  const [lang] = useLang();
   return (
     <section className="mt-2 p-4 w-full  bg-background rounded-xl select-none relative flex flex-col justify-center">
       <h3>{LANGUAGE_TEXTS.homePage.lastBooks[lang]}</h3>
