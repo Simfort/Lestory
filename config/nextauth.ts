@@ -24,7 +24,7 @@ export const nextAuthConfig: NextAuthOptions = {
       session.user.name = token.name || session.user.name;
 
       if (token.id) {
-        session.user.id = token.id;
+        (session.user as { id: string }).id = token.id as string;
       } else {
         console.warn("Token ID is missing");
       }
